@@ -4,9 +4,11 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "setup": "node ./lib/setup.js"
+    "setup": "node ./lib/setup.js",
+    "cf-export": "cf-content-types-generator -t $CONTENTFUL_ACCESS_TOKEN -s $CONTENTFUL_SPACE_ID"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.6",
     "@contentful/rich-text-react-renderer": "^15.17.1",
     "@contentful/rich-text-types": "^16.2.1",
     "@tailwindcss/typography": "0.5.9",
@@ -16,6 +18,7 @@
     "autoprefixer": "10.4.15",
     "contentful-import": "^9.0.4",
     "date-fns": "2.30.0",
+    "graphql": "^16.8.1",
     "next": "latest",
     "postcss": "8.4.31",
     "react": "^18.2.0",
