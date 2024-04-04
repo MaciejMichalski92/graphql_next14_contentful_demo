@@ -1,9 +1,6 @@
-const TEST_GRAPHQL_FIELDS = `
-  textBlock(id: "ot02ckZKw1N89xUrkw35h") {
-    title
-    description
-  }
-`;
+import footerQuery from "./queries/footer.graphql";
+
+const TEST_GRAPHQL_FOOTER = footerQuery;
 
 async function fetchGraphQL(query: string): Promise<any> {
   return fetch(
@@ -20,10 +17,6 @@ async function fetchGraphQL(query: string): Promise<any> {
 }
 
 export async function getTest(): Promise<any[]> {
-  const entries = await fetchGraphQL(
-    `query{
-          ${TEST_GRAPHQL_FIELDS}   
-    }`
-  );
+  const entries = await fetchGraphQL(TEST_GRAPHQL_FOOTER);
   return entries;
 }

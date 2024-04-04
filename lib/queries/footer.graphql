@@ -1,0 +1,17 @@
+query Footer {
+  footer(id: "2i9InFLhRQZmzfEMNFImO8") {
+    title
+    description
+    address
+    sys {
+      id
+    }
+    socialsCollection(skip: 0, limit: 100) {
+      items {
+        title
+        externalLink
+        url
+      }
+    }
+  }
+}

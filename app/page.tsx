@@ -7,7 +7,6 @@ export default async function Page() {
   return (
     <div className="container mx-auto px-5">
       {JSON.stringify(allPosts, null, 2)}
-      halo
     </div>
   );
 }
