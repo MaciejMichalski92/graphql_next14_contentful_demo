@@ -1,12 +1,21 @@
-import { getTest } from "@/lib/api";
+import { gql } from "@apollo/client";
+import { client } from "../lib/apollo-client";
+import { footerQuery } from "@/lib/queries/footer";
+import { Footer } from "@/src/components/Footer";
+import { mapFooter } from "@/lib/utils/mappers/mapFooter";
+
+const GET_FOOTER = gql(footerQuery);
 
 export default async function Page() {
-  const allPosts = await getTest();
-  console.log(allPosts);
+  const { data } = await client.query({ query: GET_FOOTER });
+
+  const footerProps = mapFooter(data);
+
+  console.log(footerProps.socialItems);
 
   return (
     <div className="container mx-auto px-5">
-      {JSON.stringify(allPosts, null, 2)}
+      <Footer {...footerProps} />
     </div>
   );
 }

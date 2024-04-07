@@ -1,4 +1,4 @@
-query Footer {
+export const footerQuery = `query Footer {
   footer(id: "2i9InFLhRQZmzfEMNFImO8") {
     title
     description
@@ -14,4 +14,4 @@ query Footer {
       }
     }
   }
-}
+}`;

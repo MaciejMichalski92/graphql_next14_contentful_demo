@@ -1,14 +1,14 @@
 interface FooterProps {
   title: string;
   // toDo change to LinkProps[]
-  socials: string[];
+  socialItems: any[];
   description?: string;
   address: string;
 }
 
 export const Footer = ({
   address,
-  socials,
+  socialItems,
   title,
   description,
 }: FooterProps) => (
@@ -20,14 +20,11 @@ export const Footer = ({
     </div>
 
     <div>
-      <div>{socials}</div>
-      <div>
-        <div>Kontakt</div>
-        <div>Galeria</div>
-        <div>O dzikich harcach</div>
-        <div>O dzikich pedagogach</div>
-        <div>Dla dzikich rodziców</div>
-      </div>
+      {socialItems?.map((item) => (
+        <a key={item.title} href={item.url}>
+          {item.title}
+        </a>
+      ))}
     </div>
   </footer>
 );
