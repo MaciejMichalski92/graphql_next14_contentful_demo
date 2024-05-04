@@ -1,13 +1,19 @@
 // toDo add types
-export const mapFooter = (data: {
-  footer: {
-    title: string;
-    description: string;
-    address: string;
-    socialsCollection: { items: any };
-    sys: { id: string };
-  };
-}) => {
+export const mapFooter = (
+  data:
+    | {
+        footer: {
+          title: string;
+          description: string;
+          address: string;
+          socialsCollection: { items: any };
+          sys: { id: string };
+        };
+      }
+    | undefined
+) => {
+  if (!data) return undefined;
+
   const {
     footer: {
       title,

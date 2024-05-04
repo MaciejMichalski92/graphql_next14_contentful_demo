@@ -1,20 +1,26 @@
 "use client";
 import { Theme } from "@radix-ui/themes";
-import { Footer } from "@/src/components/footer";
+import { Footer, type FooterProps, Header } from "@/src/components";
 import { type ReactNode } from "react";
 import { useAppSelector } from "@/src/redux/hooks";
 import { selectTheme } from "@/src/redux/themeSlice";
 
-export const AppWithProviders = ({ children }: { children: ReactNode }) => {
+/**Note: The problem with the Next14 app approach is when you want fetch CMS data on server side only, there cannot be "use client" directive, but I have to use client side also for page theme, that is why I used fetch inside the layout component, and created AppWithThemeProviders as a wrapper for the Theme component
+ */
+export const AppWithThemeProviders = ({
+  children,
+  footerProps,
+}: {
+  children: ReactNode;
+  footerProps: FooterProps | undefined;
+}) => {
   const theme = useAppSelector(selectTheme);
 
   return (
     <Theme accentColor="brown" radius="small" appearance={theme}>
-      <header>dummy header</header>
-      <section className="min-h-screen">
-        <main>{children}</main>
-      </section>
-      <Footer title={""} socialItems={[]} address={""} />
+      <Header />
+      <main className="min-h-screen">{children}</main>
+      {footerProps && <Footer {...footerProps} />}
     </Theme>
   );
 };
