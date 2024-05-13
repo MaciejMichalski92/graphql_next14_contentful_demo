@@ -2,12 +2,15 @@ import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
 import { selectTheme, switchTheme } from "@/src/redux/themeSlice";
 import { Box, Flex, Switch, Text, Tooltip } from "@radix-ui/themes";
 import { DesktopMenu, MobileMenu } from "@/src/components/menu";
+import { useDeviceDimensions } from "@/lib/hooks/useDeviceDimensions";
 
 export const Header = () => {
   const themeValue = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
+  const { isMobile, width } = useDeviceDimensions();
 
   const defaultChecked = themeValue !== "light";
+  console.log(width);
 
   return (
     <header>
@@ -16,10 +19,7 @@ export const Header = () => {
         justify="between"
         p={{ xs: "2", sm: "3", md: "5", initial: "1" }}
       >
-        <Box>
-          <MobileMenu />
-          <DesktopMenu />
-        </Box>
+        <Box>{isMobile ? <MobileMenu /> : <DesktopMenu />}</Box>
         <Flex align="center">
           {/* toDo add i18n to the text */}
           <Text mr="2">Wygląd</Text>
