@@ -22,11 +22,7 @@ const inter = Inter({
   display: "swap",
 });
 
-export default async function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
   const { data } = await client.query({ query: GET_FOOTER });
 
   const footerProps = mapFooter(data);
@@ -43,4 +39,5 @@ export default async function RootLayout({
       </body>
     </html>
   );
-}
+};
+export default RootLayout;
