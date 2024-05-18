@@ -3,22 +3,19 @@ import { selectTheme, switchTheme } from "@/src/redux/themeSlice";
 import { Box, Flex, Switch, Text, Tooltip, Section } from "@radix-ui/themes";
 import { DesktopMenu, MobileMenu } from "@/src/components/menu";
 import { useDeviceDimensions } from "@/lib/hooks/useDeviceDimensions";
-import { ImageBlock } from "@/src/components/imageBlock/ImageBlock";
-import { gql } from "@apollo/client";
-import { Spinner } from "@radix-ui/themes";
-import { client } from "@/lib/apollo-client";
-import { imageBlockQuery } from "@/lib/queries/imageBlock";
+import Image from "next/image";
+import { ImageProps } from "@/src/types/shared";
 
-const GET_IMAGE_BLOCK = gql(imageBlockQuery("2kBKfEHjwnuUNrJ6WYcpiF"));
+interface HeaderProps {
+  image: ImageProps;
+}
 
-export const Header = () => {
+export const Header = ({ image }: HeaderProps) => {
   const themeValue = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
-  const { isMobile, width } = useDeviceDimensions();
+  const { isMobile } = useDeviceDimensions();
 
   const defaultChecked = themeValue !== "light";
-
-  if (loading) return <Spinner />;
 
   return (
     <header>
@@ -42,6 +39,9 @@ export const Header = () => {
           </Tooltip>
         </Flex>
       </Flex>
+      <Section>
+        <Image alt={image.alt || ""} src={image.src} fill />
+      </Section>
     </header>
   );
 };
