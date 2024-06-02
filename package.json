@@ -2,10 +2,11 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "npm run lint && next build",
-    "start": "next start",
+    "build": "npm run generate && npm run lint && next build",
+    "start": "npm run generate && next start",
     "setup": "node ./lib/setup.js",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "graphql-codegen --config codegen.yml --require dotenv/config"
   },
   "dependencies": {
     "@apollo/client": "^3.9.6",
@@ -39,6 +40,9 @@
     "typescript": "^5.1.6"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.7",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.4"
   }

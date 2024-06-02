@@ -1,35 +1,20 @@
-// toDo add types
-export const mapHeader = (data: {
-  __typename: string;
-  title: string;
-  textContent: {
-    __typename: string;
-    title: string;
-    description: string;
-  };
-  backgroundImage: {
-    __typename: string;
-    altText: string;
-    image: {
-      __typename: string;
-      url: string;
-    };
-    mobileImage: {
-      __typename: string;
-      url: string;
-    };
-  };
-}) => {
-  if (!data) return undefined;
+import { HeaderProps } from "@/src/components/headerSection";
+import { HeaderSection } from "@/src/types/schema";
 
+// toDo add types
+export const mapHeader = (data: HeaderSection): HeaderProps => {
   const {
-    backgroundImage: {
-      altText,
-      image: { url: desktopUrl },
-      mobileImage: { url: mobileUrl },
-    },
-    textContent: { description, title },
+    // mobileImage: { url: mobileUrl }, toDo add mobile Image option
+    backgroundImage,
+    textContent,
   } = data;
 
-  return { description, title, desktopUrl, mobileUrl, altText };
+  return {
+    description: textContent?.description || "",
+    title: textContent?.title || "",
+    image: {
+      src: backgroundImage?.image?.url || "",
+      alt: backgroundImage?.altText || "",
+    },
+  };
 };

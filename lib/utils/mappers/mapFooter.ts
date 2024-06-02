@@ -1,17 +1,9 @@
-// toDo add types
-export const mapFooter = (
-  data:
-    | {
-        footer: {
-          title: string;
-          description: string;
-          address: string;
-          socialsCollection: { items: any };
-          sys: { id: string };
-        };
-      }
-    | undefined
-) => {
+import { FooterProps } from "@/src/components";
+import { Footer } from "@/src/types/schema";
+
+export const mapFooter = (data: {
+  footer: Footer;
+}): FooterProps | undefined => {
   if (!data) return undefined;
 
   const {
@@ -19,16 +11,16 @@ export const mapFooter = (
       title,
       description,
       address,
-      socialsCollection: { items },
+      socialsCollection,
       sys: { id },
     },
   } = data;
 
   return {
-    socialItems: items,
-    title,
-    description,
-    address,
-    id,
+    socialItems: socialsCollection?.items,
+    title: title || "",
+    description: description || "",
+    address: address || "",
+    id: id || "",
   };
 };

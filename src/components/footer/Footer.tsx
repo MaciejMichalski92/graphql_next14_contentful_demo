@@ -1,11 +1,11 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
-import { selectTheme, switchTheme } from "@/src/redux/themeSlice";
+
+import { Link, Maybe } from "@/src/types/schema";
 import { Box, Flex, Text } from "@radix-ui/themes";
 export interface FooterProps {
   title: string;
-  // toDo change to LinkProps[]
-  socialItems: any[];
+  id: string;
+  socialItems?: Maybe<Link>[] | undefined;
   description?: string;
   address: string;
 }
@@ -38,8 +38,8 @@ export const Footer = ({
           justify="center"
         >
           {socialItems?.map((item) => (
-            <a key={item.title} href={item.url}>
-              {item.title}
+            <a key={item?.title} href={item?.url || "#"}>
+              {item?.title}
             </a>
           ))}
         </Flex>
