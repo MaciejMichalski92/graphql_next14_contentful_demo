@@ -1,7 +1,7 @@
 import { HeaderProps } from "@/src/components/headerSection";
 import { HeaderSection } from "@/src/types/schema";
 
-// toDo add types
+// toDo add better guards to the incoming content
 export const mapHeader = (data: HeaderSection): HeaderProps => {
   const {
     // mobileImage: { url: mobileUrl }, toDo add mobile Image option

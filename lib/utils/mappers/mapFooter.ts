@@ -1,6 +1,7 @@
 import { FooterProps } from "@/src/components";
 import { Footer } from "@/src/types/schema";
 
+// toDo add better guards to the incoming content
 export const mapFooter = (data: {
   footer: Footer;
 }): FooterProps | undefined => {

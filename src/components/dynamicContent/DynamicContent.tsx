@@ -57,7 +57,6 @@ export const DynamicContent = <T extends TypeName>({
       return <p>Gallery</p>;
     case "HeaderSection":
       const headerProps = mapHeader(data as IHeaderSection);
-
       return <HeaderSection {...headerProps} />;
     case "ImageBlock":
       const imageProps = mapImageBlock(data as IImageBlock);
